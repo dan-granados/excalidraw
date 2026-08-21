@@ -108,9 +108,6 @@ const TTDDialogBase = withInternalFallback(
                   </div>
                 </div>
               </TTDDialogTabTrigger>
-              <TTDDialogTabTrigger tab="mermaid">
-                {t("mermaid.label")}
-              </TTDDialogTabTrigger>
               <TTDDialogTabTrigger tab="image">
                 <div className="ttd-dialog-tab-trigger__content">
                   {t("imageGeneration.label")}
@@ -118,6 +115,9 @@ const TTDDialogBase = withInternalFallback(
                     {t("chat.aiBeta")}
                   </div>
                 </div>
+              </TTDDialogTabTrigger>
+              <TTDDialogTabTrigger tab="mermaid">
+                {t("mermaid.label")}
               </TTDDialogTabTrigger>
             </TTDDialogTabTriggers>
           )}
