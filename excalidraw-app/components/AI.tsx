@@ -13,6 +13,7 @@ import { safelyParseJSON } from "@excalidraw/common";
 import type { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types";
 
 import { TTDIndexedDBAdapter } from "../data/TTDStorage";
+import { generateImage } from "../data/ai/imageGeneration";
 
 export const AIComponents = ({
   excalidrawAPI,
@@ -110,6 +111,7 @@ export const AIComponents = ({
       />
 
       <TTDDialog
+        onImageSubmit={generateImage}
         onTextSubmit={async (props) => {
           const { onChunk, onStreamCreated, signal, messages } = props;
 

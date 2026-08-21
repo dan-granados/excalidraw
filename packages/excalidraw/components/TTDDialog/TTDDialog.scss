@@ -734,6 +734,37 @@ $fullScreenModalBreakpoint: 600px;
     display: none;
   }
 
+  .text-to-image {
+    &__error {
+      color: var(--color-danger);
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    &__preview {
+      align-items: center;
+      background-color: var(--color-surface-low);
+      border: 1px solid var(--dialog-border-color);
+      border-radius: var(--border-radius-lg);
+      box-sizing: border-box;
+      color: var(--color-gray-50);
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      min-height: 280px;
+      overflow: hidden;
+      padding: 1rem;
+      text-align: center;
+
+      img {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
   .ttd-chat-history-menu {
     display: flex;
     gap: 1rem;

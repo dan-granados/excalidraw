@@ -1062,6 +1062,7 @@ const ExcalidrawWrapper = () => {
         {excalidrawAPI && <AIComponents excalidrawAPI={excalidrawAPI} />}
 
         <TTDDialogTrigger />
+        <TTDDialogTrigger tab="image" />
         {isCollaborating && isOffline && (
           <div className="alertalert--warning">
             {t("alerts.collabOfflineWarning")}
