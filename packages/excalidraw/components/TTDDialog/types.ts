@@ -110,6 +110,15 @@ export namespace TTTDDialog {
     props: OnTextSubmitProps,
   ) => Promise<OnTextSubmitRetValue>;
 
+  export type OnImageSubmitProps = {
+    prompt: string;
+    signal?: AbortSignal;
+  };
+
+  export type onImageSubmit = (
+    props: OnImageSubmitProps,
+  ) => Promise<Blob>;
+
   /**
    * return undefined to use default rendering
    */

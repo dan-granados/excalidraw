@@ -705,6 +705,18 @@
     },
     "upsellBtnLabel": "Upgrade to Plus"
   },
+  "imageGeneration": {
+    "label": "Text to image",
+    "generate": "Generate",
+    "regenerate": "Regenerate",
+    "insert": "Insert image",
+    "placeholder": "Describe the image you want to create...",
+    "emptyPreview": "Your generated image will appear here.",
+    "previewAlt": "AI-generated preview",
+    "errors": {
+      "invalidImage": "The image generator returned an invalid image."
+    }
+  },
   "quickSearch": {
     "placeholder": "Quick search"
   },

@@ -8,6 +8,7 @@ import { withInternalFallback } from "../hoc/withInternalFallback";
 
 import MermaidToExcalidraw from "./MermaidToExcalidraw";
 import TextToDiagram from "./TextToDiagram";
+import { TextToImage } from "./TextToImage";
 import TTDDialogTabs from "./TTDDialogTabs";
 import { TTDDialogTabTriggers } from "./TTDDialogTabTriggers";
 import { TTDDialogTabTrigger } from "./TTDDialogTabTrigger";
@@ -27,6 +28,7 @@ export const TTDDialog = (
   props:
     | {
         onTextSubmit: TTTDDialog.onTextSubmit;
+        onImageSubmit: TTTDDialog.onImageSubmit;
         renderWelcomeScreen?: TTTDDialog.renderWelcomeScreen;
         renderWarning?: TTTDDialog.renderWarning;
         persistenceAdapter: TTDPersistenceAdapter;
@@ -53,12 +55,13 @@ const TTDDialogBase = withInternalFallback(
     tab,
     ...rest
   }: {
-    tab: "text-to-diagram" | "mermaid";
+    tab: "text-to-diagram" | "image" | "mermaid";
   } & (
     | {
         onTextSubmit(
           props: TTTDDialog.OnTextSubmitProps,
         ): Promise<TTTDDialog.OnTextSubmitRetValue>;
+        onImageSubmit: TTTDDialog.onImageSubmit;
         renderWelcomeScreen?: TTTDDialog.renderWelcomeScreen;
         renderWarning?: TTTDDialog.renderWarning;
         persistenceAdapter: TTDPersistenceAdapter;
@@ -105,6 +108,14 @@ const TTDDialogBase = withInternalFallback(
                   </div>
                 </div>
               </TTDDialogTabTrigger>
+              <TTDDialogTabTrigger tab="image">
+                <div className="ttd-dialog-tab-trigger__content">
+                  {t("imageGeneration.label")}
+                  <div className="ttd-dialog-tab-trigger__badge">
+                    {t("chat.aiBeta")}
+                  </div>
+                </div>
+              </TTDDialogTabTrigger>
               <TTDDialogTabTrigger tab="mermaid">
                 {t("mermaid.label")}
               </TTDDialogTabTrigger>
@@ -128,6 +139,11 @@ const TTDDialogBase = withInternalFallback(
               isActive={tab === "mermaid"}
             />
           </TTDDialogTab>
+          {!("__fallback" in rest) && (
+            <TTDDialogTab className="ttd-dialog-content" tab="image">
+              <TextToImage onImageSubmit={rest.onImageSubmit} />
+            </TTDDialogTab>
+          )}
         </TTDDialogTabs>
       </Dialog>
     );
