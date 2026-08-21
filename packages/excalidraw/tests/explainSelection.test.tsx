@@ -42,8 +42,8 @@ describe("ExplainSelectionPlugin", () => {
         prompt: "What happens here?",
       });
     });
-    expect(await screen.findByTestId("explain-selection-result")).toHaveTextContent(
-      "The selected components describe a request flow.",
-    );
+    expect(
+      await screen.findByTestId("explain-selection-result"),
+    ).toHaveTextContent("The selected components describe a request flow.");
   });
 });
