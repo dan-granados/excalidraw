@@ -498,6 +498,7 @@ export {
 export { elementsOverlappingBBox } from "@excalidraw/element";
 
 export { DiagramToCodePlugin } from "./components/DiagramToCodePlugin/DiagramToCodePlugin";
+export { ExplainSelectionPlugin } from "./components/ExplainSelection/ExplainSelectionPlugin";
 export { getDataURL } from "./data/blob";
 export { isElementLink } from "@excalidraw/element";
 

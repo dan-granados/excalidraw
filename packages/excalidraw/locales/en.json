@@ -197,6 +197,17 @@
     "arrowBinding": "Arrow binding",
     "midpointSnapping": "Snap to midpoints"
   },
+  "explainSelection": {
+    "menuItem": "Explain selection",
+    "title": "Explain selected diagram",
+    "description": "Ask AI about the {{count}} selected components.",
+    "promptLabel": "What would you like to understand?",
+    "promptPlaceholder": "For example: Summarize this flow and identify any unclear steps.",
+    "submit": "Explain",
+    "emptySelection": "Select one or more diagram components to continue.",
+    "resultTitle": "Explanation",
+    "generationFailed": "Could not explain the selection."
+  },
   "elementLink": {
     "title": "Link to object",
     "desc": "Click on a shape on canvas or paste a link.",

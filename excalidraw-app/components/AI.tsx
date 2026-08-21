@@ -1,5 +1,6 @@
 import {
   DiagramToCodePlugin,
+  ExplainSelectionPlugin,
   exportToBlob,
   getNonDeletedElements,
   getTextFromElements,
@@ -21,6 +22,53 @@ export const AIComponents = ({
 }) => {
   return (
     <>
+      <ExplainSelectionPlugin
+        explain={async ({ elements, prompt }) => {
+          const appState = excalidrawAPI.getAppState();
+          const blob = await exportToBlob({
+            elements,
+            appState: {
+              ...appState,
+              exportBackground: true,
+              viewBackgroundColor: appState.viewBackgroundColor,
+            },
+            files: excalidrawAPI.getFiles(),
+            mimeType: MIME_TYPES.jpg,
+          });
+          const image = await getDataURL(blob);
+          const response = await fetch(
+            `${
+              import.meta.env.VITE_APP_AI_BACKEND
+            }/v1/ai/diagram-explanation/generate`,
+            {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                image,
+                texts: getTextFromElements(elements),
+                prompt,
+                theme: appState.theme,
+              }),
+            },
+          );
+
+          if (!response.ok) {
+            const text = await response.text();
+            const errorJSON = safelyParseJSON(text);
+            throw new Error(errorJSON?.message || text || "Request failed");
+          }
+
+          const result = await response.json();
+          if (typeof result.explanation !== "string") {
+            throw new Error("Generation failed (invalid response)");
+          }
+
+          return { explanation: result.explanation };
+        }}
+      />
       <DiagramToCodePlugin
         generate={async ({ frame, children }) => {
           const appState = excalidrawAPI.getAppState();

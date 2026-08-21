@@ -492,6 +492,7 @@ import type {
   ElementsPendingErasure,
   ExcalidrawImperativeAPIEventMap,
   GenerateDiagramToCode,
+  ExplainSelection,
   NullableGridSize,
   UIConfig,
 } from "../types";
@@ -2783,6 +2784,9 @@ class App extends React.Component<AppProps, AppState> {
   public plugins: {
     diagramToCode?: {
       generate: GenerateDiagramToCode;
+    };
+    explainSelection?: {
+      explain: ExplainSelection;
     };
   } = {};
 
