@@ -457,6 +457,7 @@ export interface AppState {
     | null
     | { name: "imageExport" | "help" | "jsonExport" }
     | { name: "ttd"; tab: "text-to-diagram" | "mermaid" }
+    | { name: "explainSelection" }
     | { name: "commandPalette" }
     | { name: "settings" }
     | { name: "elementLinkSelector"; sourceElementId: ExcalidrawElement["id"] }
@@ -1376,6 +1377,11 @@ export type GenerateDiagramToCode = (props: {
   frame: NonDeleted<ExcalidrawMagicFrameElement>;
   children: readonly NonDeletedExcalidrawElement[];
 }) => MaybePromise<{ html: string }>;
+
+export type ExplainSelection = (props: {
+  elements: readonly NonDeletedExcalidrawElement[];
+  prompt: string;
+}) => MaybePromise<{ explanation: string }>;
 
 export type Offsets = Partial<{
   top: number;

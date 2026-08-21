@@ -570,6 +570,22 @@ function CommandPaletteInner({
           },
         },
         {
+          label: `${t("explainSelection.menuItem")}...`,
+          category: DEFAULT_CATEGORIES.tools,
+          icon: brainIconThin,
+          viewMode: false,
+          predicate:
+            appProps.aiEnabled &&
+            !!app.plugins.explainSelection &&
+            !!Object.keys(uiAppState.selectedElementIds).length,
+          perform: () => {
+            setAppState((state) => ({
+              ...state,
+              openDialog: { name: "explainSelection" },
+            }));
+          },
+        },
+        {
           label: `${t("toolBar.mermaidToExcalidraw")}...`,
           category: DEFAULT_CATEGORIES.tools,
           icon: mermaidLogoIcon,

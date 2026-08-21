@@ -33,6 +33,7 @@ import {
   bucketFillIcon,
   mermaidLogoIcon,
   MagicIcon,
+  brainIcon,
 } from "./icons";
 
 import "./ToolIcon.scss";
@@ -333,6 +334,17 @@ export const MobileToolbar = ({ app, setAppState }: MobileToolbarProps) => {
             Generate
           </div>
           {app.props.aiEnabled !== false && <TTDDialogTriggerTunnel.Out />}
+          {app.props.aiEnabled !== false && app.plugins.explainSelection && (
+            <DropdownMenu.Item
+              onSelect={() => app.setOpenDialog({ name: "explainSelection" })}
+              icon={brainIcon}
+              data-testid="toolbar-explain-selection"
+              badge={<DropdownMenu.Item.Badge>AI</DropdownMenu.Item.Badge>}
+              disabled={!Object.keys(app.state.selectedElementIds).length}
+            >
+              {t("explainSelection.menuItem")}
+            </DropdownMenu.Item>
+          )}
           <DropdownMenu.Item
             onSelect={() => app.setOpenDialog({ name: "ttd", tab: "mermaid" })}
             icon={mermaidLogoIcon}
