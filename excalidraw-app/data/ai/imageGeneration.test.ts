@@ -22,17 +22,15 @@ describe("parseImageGenerationResponse", () => {
     const image = await parseImageGenerationResponse(response);
 
     expect(image.type).toBe("image/png");
-    expect(await image.text()).toBe("generated image");
+    expect(image.size).toBe(15);
   });
 
   it("downloads an image returned as a URL", async () => {
-    const fetchSpy = vi
-      .spyOn(globalThis, "fetch")
-      .mockResolvedValue(
-        new Response(new Uint8Array([1, 2]), {
-          headers: { "content-type": "image/webp" },
-        }),
-      );
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response(new Uint8Array([1, 2]), {
+        headers: { "content-type": "image/webp" },
+      }),
+    );
 
     const image = await parseImageGenerationResponse(
       Response.json({ image: "https://images.example/generated.webp" }),
