@@ -20,7 +20,7 @@ export const ExplainSelectionPlugin = ({
 
     return () => {
       if (app.plugins.explainSelection?.explain === explain) {
-        delete app.plugins.explainSelection;
+        app.setPlugins({ explainSelection: undefined });
       }
     };
   }, [app, explain]);

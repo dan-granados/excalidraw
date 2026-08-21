@@ -2792,6 +2792,7 @@ class App extends React.Component<AppProps, AppState> {
 
   public setPlugins(plugins: Partial<App["plugins"]>) {
     Object.assign(this.plugins, plugins);
+    this.triggerRender();
   }
 
   private async onMagicFrameGenerate(

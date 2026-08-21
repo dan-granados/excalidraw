@@ -28,8 +28,10 @@ describe("ExplainSelectionPlugin", () => {
     API.setElements([rectangle]);
     API.setAppState({
       selectedElementIds: { [rectangle.id]: true },
-      openDialog: { name: "explainSelection" },
     });
+
+    fireEvent.click(screen.getByTitle("More tools"));
+    fireEvent.click(await screen.findByTestId("toolbar-explain-selection"));
 
     fireEvent.change(await screen.findByTestId("explain-selection-prompt"), {
       target: { value: "What happens here?" },
